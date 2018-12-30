@@ -12,6 +12,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -22,6 +23,7 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
     int quantity = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,24 +34,31 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void increment(View view) {
-        quantity  +=1;
+        quantity += 1;
         display(quantity);
     }
+
     public void decrement(View view) {
         quantity--;
-        if(quantity < 0){
+        if (quantity < 0) {
             quantity = 0;
         }
         display(quantity);
     }
 
-    private String createOrderSummary(int price){
-        return "Name:Shivam\n"+"Quantity: "+quantity+"\nTotal: $"+price+".00\nThank you!";
+    private String createOrderSummary(int price) {
+        return "Name:Shivam\n" + "Quantity: " + quantity + "\nTotal: $" + price + ".00\nThank you!";
     }
 
-    private int calPrice(){
-        return quantity*5;
+    private int calPrice() {
+        CheckBox extras = findViewById(R.id.extra);
+        int price = quantity * 5;
+        if (extras.isChecked()) {
+            price += quantity * 2;
+        }
+        return price;
     }
+
     public void submitOrder(View view) {
         displayMessage(createOrderSummary(calPrice()));
     }
