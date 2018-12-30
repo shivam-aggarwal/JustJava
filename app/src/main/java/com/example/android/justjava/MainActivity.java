@@ -23,6 +23,8 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
     int quantity = 2;
+    boolean wCream = false;
+    boolean choco = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +49,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String createOrderSummary(int price) {
-        return "Name:Shivam\n" + "Quantity: " + quantity + "\nTotal: $" + price + ".00\nThank you!";
+        return "Name:Shivam\nAdd Whipped Cream? " + wCream + "\nAdd Chocolate? " + choco + "\nQuantity: " + quantity + "\nTotal: $" + price + ".00\nThank you!";
     }
 
     private int calPrice() {
-        CheckBox extras = findViewById(R.id.extra);
-        int price = quantity * 5;
-        if (extras.isChecked()) {
-            price += quantity * 2;
+        CheckBox whippedCream = findViewById(R.id.whippedextra);
+        CheckBox chocolate = findViewById(R.id.chocoextra);
+        int price = 5;
+        if (whippedCream.isChecked()) {
+            price += 2;
+            wCream = true;
         }
-        return price;
+        if (chocolate.isChecked()) {
+            price += 2;
+            choco = true;
+        }
+        return price * quantity;
     }
 
     public void submitOrder(View view) {
+        wCream = choco = false;
         displayMessage(createOrderSummary(calPrice()));
     }
 
