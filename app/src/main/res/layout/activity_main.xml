@@ -26,11 +26,8 @@
                 android:layout_marginLeft="16dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="toppings"
-                android:textAllCaps="true" />
+                style="@style/HeaderTextStyle"
+                android:text="@string/toppings" />
 
             <CheckBox
                 android:id="@+id/whippedextra"
@@ -51,12 +48,8 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="quantity"
-                android:textAllCaps="true" />
+                style="@style/HeaderTextStyle"
+                android:text="quantity"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
